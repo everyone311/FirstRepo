@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment 1</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .container {
+        /* align-items: center; */
+        border: 4px solid rgb(23, 84, 144);
+        margin-top: 50px;
+        width: 500px;
+        min-height: 600px;
+        padding: 10px 30px 10px 30px;
+      }
+      h3 {
+        text-align: center;
+        text-decoration: underline;
+      }
+      .submit {
+        width: 100%;
+        margin-top: 20px;
+      }
+      p {
+        color: gray;
+      }
+    </style>
+
+    <script>
+      function validation() {
+        event.preventDefault();
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var mobile = document.getElementById("number").value;
+        var country = document.getElementById("country").value;
+
+        if (document.querySelector('input[name="gender"]:checked')) {
+          var gender = document.querySelector(
+            'input[name="gender"]:checked'
+          ).value;
+        }
+
+        var hobbies = document.getElementById("hobbies").value;
+        // var gender = document.getElementsByName("gender");
+
+        console.log(
+          name.length +
+            "," +
+            email.length +
+            "," +
+            mobile.length +
+            "," +
+            country +
+            "," +
+            gender +
+            ","
+        );
+
+        if (
+          name.length === 0 &&
+          email.length === 0 &&
+          mobile.length === 0 &&
+          gender === undefined &&
+          country === "Select"
+        ) {
+          console.log("1");
+          document.getElementById("nameError").innerHTML = "Enter the username";
+          document.getElementById("emailError").innerHTML = "Enter the email";
+          document.getElementById("mobileError").innerHTML = "Enter the mobile";
+          document.getElementById("coutryError").innerHTML =
+            "Enter the country";
+          document.getElementById("genderError").innerHTML = "Enter the gender";
+          return false;
+        }
+        if (
+          name.length > 0 &&
+          email.length === 0 &&
+          mobile.length === 0 &&
+          gender === undefined &&
+          country === "Select"
+        ) {
+          console.log("2");
+          document.getElementById("nameError").innerHTML = "";
+          document.getElementById("emailError").innerHTML = "Enter the email";
+          document.getElementById("mobileError").innerHTML = "Enter the mobile";
+          document.getElementById("coutryError").innerHTML =
+            "Enter the country";
+          document.getElementById("genderError").innerHTML = "Enter the gender";
+          return false;
+        }
+        if (
+          name.length === 0 &&
+          email.length > 0 &&
+          mobile.length === 0 &&
+          gender === undefined &&
+          country === "Select"
+        ) {
+          console.log("3");
+          document.getElementById("nameError").innerHTML = "Enter the username";
+          document.getElementById("emailError").innerHTML = "";
+          document.getElementById("mobileError").innerHTML = "Enter the mobile";
+          document.getElementById("coutryError").innerHTML =
+            "Enter the country";
+          document.getElementById("genderError").innerHTML = "Enter the gender";
+          return false;
+        }
+        if (
+          name.length === 0 &&
+          email.length === 0 &&
+          mobile.length > 0 &&
+          gender === undefined &&
+          country === "Select"
+        ) {
+          console.log("4");
+          document.getElementById("nameError").innerHTML = "Enter the username";
+          document.getElementById("emailError").innerHTML = "Enter the email";
+          document.getElementById("mobileError").innerHTML = "";
+          document.getElementById("coutryError").innerHTML =
+            "Enter the country";
+          document.getElementById("genderError").innerHTML = "Enter the gender";
+          return false;
+        }
+        if (
+          name.length === 0 &&
+          email.length === 0 &&
+          mobile.length === 0 &&
+          gender !== undefined &&
+          country === "Select"
+        ) {
+          console.log("5");
+          document.getElementById("nameError").innerHTML = "Enter the username";
+          document.getElementById("emailError").innerHTML = "Enter the email";
+          document.getElementById("mobileError").innerHTML = "Enter the mobile";
+          document.getElementById("coutryError").innerHTML =
+            "Enter the country";
+          document.getElementById("genderError").innerHTML = "";
+          return false;
+        }
+        if (
+          name.length === 0 &&
+          email.length === 0 &&
+          mobile.length === 0 &&
+          gender === undefined &&
+          country !== "Select"
+        ) {
+          console.log("6");
+          document.getElementById("nameError").innerHTML = "Enter the username";
+          document.getElementById("emailError").innerHTML = "Enter the email";
+          document.getElementById("mobileError").innerHTML = "Enter the mobile";
+          document.getElementById("coutryError").innerHTML = "";
+          document.getElementById("genderError").innerHTML = "Enter the gender";
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Application Form</h3>
+      <form onsubmit="return validation()" name="aa_form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter Name"
+          />
+          <span id="nameError" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+          <span id="emailError" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="number">Mobile Number</label>
+          <input
+            type="number"
+            class="form-control"
+            id="number"
+            placeholder="Enter email"
+          />
+          <span id="mobileError" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <div>
+            <select class="form-control" id="country">
+              <option value="Select">select</option>
+              <option value="India">India</option>
+              <option value="US">US</option>
+              <option value="UK">Uk</option>
+            </select>
+          </div>
+          <span id="coutryError" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <div class="form-control" id="gender">
+            <input type="radio" name="gender" value="Male" />Male
+            <input type="radio" name="gender" value="Female" />Female
+          </div>
+          <span id="genderError" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label for="hobbies">Hobbies<span>(optional)</span></label>
+          <div class="form-control" id="hobbies">
+            <input type="checkbox" name="hobbies" value="Sports" />Sports
+
+            <input type="checkbox" value="Movies" name="hobbies" />Movies
+            <input type="checkbox" value="Music" name="hobbies" />Music
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary submit" type="submit" value="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

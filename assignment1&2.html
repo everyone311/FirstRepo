@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 1 & 2</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #491313;
+        text-align: left;
+        padding: 8px;
+        width: 100px;
+        text-align: center;
+      }
+
+      table th {
+        background-color: rgb(175, 174, 174);
+      }
+
+      p {
+        font-size: 25px;
+        color: #d91c6e;
+      }
+      li {
+        font-size: 20px;
+      }
+    </style>
+
+    <script>
+      let employeeList = [
+        {
+          name: "Aarthi",
+          id: 1,
+          Gender: "Female",
+          salary: 50000,
+          Designation: "Manager",
+        },
+        {
+          name: "santhiya",
+          id: 2,
+          Gender: "Female",
+          salary: 30000,
+          Designation: "Software Developer",
+        },
+        {
+          name: "kaviya",
+          id: 3,
+          Gender: "Female",
+          salary: 40000,
+          Designation: "Associate developer",
+        },
+        {
+          name: "Arun",
+          id: 4,
+          Gender: "Male",
+          salary: 40000,
+          Designation: "Software Developer",
+        },
+        {
+          name: "Balaji",
+          id: 5,
+          Gender: "Male",
+          salary: 40000,
+          Designation: "Associate developer",
+        },
+        {
+          name: "oviya",
+          id: 6,
+          Gender: "Female",
+          salary: 40000,
+          Designation: "Software Developer",
+        },
+      ];
+
+      document.write(`<p>Assignment 1</p>`);
+
+      document.write(`<table> <tr> <th>Employee ID</th>
+               <th>Name</th>
+               <th>Gender</th>
+               <th>Salary</th>
+               <th>Designation</th>
+             </tr>
+           </table>`);
+
+      employeeList.map((item) => {
+        document.write(`<table> 
+            <tr> 
+               <td>${item.id}</td>
+               <td>${item.name}</td>
+               <td>${item.Gender}</td>
+               <td>${item.salary}</td>
+               <td>${item.Designation}</td>
+            </tr>
+           </table>`);
+      });
+
+      document.write(`<p>Assignment 2</p>`);
+      document.write(`<p>a)List out all male employees</P>`);
+
+      var maleEmployees = employeeList.filter((emp) => {
+        return emp.Gender === "Male";
+      });
+      maleEmployees.map((emp) => {
+        document.write(
+          `<ul><li>${emp.name},${emp.Gender},${emp.Designation}</li></ul>`
+        );
+      });
+
+      document.write(`<p>b)List out all Female employees</P>`);
+
+      var femaleEmployees = employeeList.filter((emp) => {
+        return emp.Gender === "Female";
+      });
+      femaleEmployees.map((emp) => {
+        document.write(
+          `<ul><li>${emp.name},${emp.Gender},${emp.Designation}</li></ul>`
+        );
+      });
+
+      document.write(`<p>c)List out Associate Developer</P>`);
+
+      var designation = employeeList.filter((emp) => {
+        return emp.Designation === "Associate developer";
+      });
+      designation.map((emp) => {
+        document.write(
+          `<ul><li>${emp.name},${emp.Gender},${emp.Designation}</li></ul>`
+        );
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+  .container{
+    width: 400px;
+    border: 1px solid rgb(198, 196, 196);
+    margin-top: 100px;
+    box-shadow: 12px 12px 12px 12px rgba(198, 196, 196, .25);
+    min-height: 450px;
+    border-radius: 5px;
+    padding: 10px 30px 10px 30px;
+  }
+  h3{
+    text-align: center;
+  }
+  .signup{
+    width: 100%;
+    background-color:rgb(0, 124, 255);
+    border-radius: 0;
+    margin-top: 20px;
+  }
+  .signup:hover{
+    background-color:rgb(0, 124, 255);
+  }
+  .msg{
+    margin-left: 2px;
+    margin-top: 10px;
+  }
+</style>
+
+  </head>
+  <body>
+    <div class="container">
+      <h3>Sign UP</h3>
+      <form onsubmit="return validation()" name="aa_form">
+        <div class="form-group">
+          <label for="name">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter Name"
+          />
+          <div class=" msg"><span id="nameError" class="text-danger"></span></div>
+          
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+          <div class=" msg"><span id="emailError" class="text-danger"></span></div> 
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password " id="password"  placeholder="***"></input>
+            <div class=" msg">  <span id="passwordError" class="text-danger"></span></div>
+        </div>
+        <div class="form-group">
+            <label for="cpassword">Confirm Password:</label>
+             <input class="form-control" type="password " id="cpassword"  placeholder="Reenter your password"></input>
+             <div class=" msg">  <span id="cpasswordError" class="text-danger"></span></div>
+       
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary signup" type="submit" value="submit">
+            Sign UP
+          </button>
+        </div>
+      </form>
+    </div>
+
+
+
+    <script>
+
+let name= document.getElementById("name");
+let email = document.getElementById("email");
+let password = document.getElementById("password");
+let cpassword = document.getElementById("cpassword");
+
+let emailRegex=/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+let passwordRegex = new RegExp("(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})");
+let nameRegex =new RegExp("(?=.{7,12}$)");
+
+name.addEventListener("input",()=>{
+  nameValidation(name.value);
+});
+email.addEventListener("input",()=>{
+  emailValidation(email.value);
+});
+
+password.addEventListener("input",()=>{
+  passwordValidation(password.value);
+})
+
+cpassword.addEventListener("input",()=>{
+  cpasswordValidation(cpassword.value);
+})
+
+function nameValidation(nameValue){
+  // nameValue.length < 3 || nameValue.length >25
+  if(nameValue.length < 3 || nameValue.length >25 || nameValue.length === undefined || nameValue.length === null){
+          document.getElementById("nameError").innerHTML="UserName must be between 3 to 25 ";
+          name.style.borderColor="red";
+          return false;
+   }
+   else{
+         document.getElementById("nameError").innerHTML="";
+         name.style.borderColor="green";
+         return true;
+  }
+} 
+
+function emailValidation(emailValue){
+  if(!emailRegex.test(emailValue)){
+    document.getElementById("emailError").innerHTML="Email Should contain @ symbol  ";
+          email.style.borderColor="red";
+          return false;
+  }
+  else{
+    document.getElementById("emailError").innerHTML="";
+         email.style.borderColor="green";
+         return true;
+
+  }
+}
+
+
+function passwordValidation(passwordValue){
+  if(!passwordRegex.test(passwordValue)){
+    document.getElementById("passwordError").innerHTML=
+    "Password must has at least 8 characters that include at least 1 lowercase letter,1 uppercase letter,1 number and 1 special character in (!@#$%^&*) ";
+          password.style.borderColor="red";
+          return false;
+  }
+  else{
+    document.getElementById("passwordError").innerHTML="";
+         password.style.borderColor="green";
+         return true;
+
+  }
+}
+
+function cpasswordValidation(cpasswordValue){
+  if(cpasswordValue.length === 0){
+    document.getElementById("cpasswordError").innerHTML="Please enter the password again";
+          cpassword.style.borderColor="red";
+          return false;
+  }
+  else if(cpasswordValue !== password.value){
+    document.getElementById("cpasswordError").innerHTML="Reentered value should match the password value";
+         cpassword.style.borderColor="red";
+         return false;
+
+  }else{
+    document.getElementById("cpasswordError").innerHTML="";
+         cpassword.style.borderColor="green";
+         return true;
+  }
+}
+
+     function validation(){
+      event.preventDefault();
+     console.log(nameValidation(name.value)  );
+     console.log(emailValidation(email.value) );
+     console.log(passwordValidation(password.value)  );
+     console.log( cpasswordValidation(cpassword.value));
+
+if(name.value.length == 0 && email.value.length == 0 && password.value.length == 0&& cpassword.value.length == 0){
+  document.getElementById("nameError").innerHTML="Enter name";
+  document.getElementById("emailError").innerHTML="Enter email ";
+  document.getElementById("passwordError").innerHTML="Enter password ";
+  document.getElementById("cpasswordError").innerHTML="Enter confirm password ";
+}
+else if(nameValidation(name.value)  && emailValidation(email.value)  && passwordValidation(password.value)  && cpasswordValidation(cpassword.value)){
+  alert("User Added!!!");
+}
+
+
+     }
+
+
+      
+    </script>
+  </body>
+</html>
